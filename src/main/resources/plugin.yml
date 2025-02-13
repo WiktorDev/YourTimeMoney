@@ -1,0 +1,7 @@
+name: YourTimeMoney
+version: '1.0-SNAPSHOT'
+main: pl.ycode.plugins.timemoney.TimeMoneyPlugin
+api-version: '1.21'
+authors: [zqr12]
+description: Simple plugin for time money
+website: https://ycode.pl
