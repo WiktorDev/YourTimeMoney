@@ -1,0 +1,9 @@
+name: YourTimeCoins
+version: '1.0-SNAPSHOT'
+main: pl.ycode.plugins.timecoins.TimeCoinsPlugin
+api-version: '1.21'
+authors: [zqr12]
+description: Simple plugin for time money
+website: https://ycode.pl
+softdepend:
+  - PlaceholderAPI
