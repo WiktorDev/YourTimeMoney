@@ -21,7 +21,7 @@ public class UpdateUserTask implements Runnable {
             long elapsedTime = currentTime - user.getLastUpdate();
 
             if (elapsedTime >= TimeUtil.timeFromString(this.config.time)) {
-                user.addCoin();
+                user.give(1);
                 user.setLastUpdate(currentTime);
                 player.sendMessage(this.config.receivedCoinMessage.replace("{coins}", String.valueOf(user.getCoins())));
             }

@@ -1,12 +1,15 @@
 package pl.ycode.plugins.timecoins.user;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import pl.ycode.plugins.timecoins.api.ApiUser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-public class User {
+public class User implements ApiUser {
     private final UUID uniqueId;
     private int coins;
     private int spentCoins;
@@ -28,35 +31,47 @@ public class User {
         this.lastUpdate = rs.getLong("last_update");
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
+    @Override
+    public boolean has(int amount) {
+        return this.coins >= amount;
     }
-    public void setLastUpdate(long lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    @Override
+    public void give(int amount) {
+        this.coins += amount;
+    }
+    @Override
+    public void take(int amount) {
+        this.coins -= amount;
+        this.spentCoins += amount;
     }
 
+    @Override
     public UUID getUniqueId() {
         return this.uniqueId;
     }
+    @Override
     public int getCoins() {
         return this.coins;
     }
-
-    public long getLastUpdate() {
-        return lastUpdate;
-    }
-    public long getFirstLogin() {
-        return firstLogin;
-    }
-
-    public void addCoin() {
-        this.coins++;
-    }
+    @Override
     public int getSpentCoins() {
         return spentCoins;
     }
+    @Override
+    public long getFirstLogin() {
+        return firstLogin;
+    }
+    @Override
+    public long getLastUpdate() {
+        return lastUpdate;
+    }
 
-    public void setSpentCoins(int spentCoins) {
-        this.spentCoins = spentCoins;
+    public String getName() {
+        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(this.uniqueId);
+        return offlinePlayer.getName();
+    }
+
+    public void setLastUpdate(long lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

@@ -29,6 +29,10 @@ allprojects {
         maven {
             url = "https://storehouse.okaeri.eu/repository/maven-public/"
         }
+        maven {
+            url = 'https://repo.xenondevs.xyz/releases'
+        }
+        maven { url "https://repo.panda-lang.org/releases" }
     }
     dependencies {}
 }

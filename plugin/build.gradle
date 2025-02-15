@@ -1,6 +1,9 @@
 repositories {
     mavenCentral()
     maven {
+        url = 'https://repo.xenondevs.xyz/releases'
+    }
+    maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
@@ -23,6 +26,9 @@ dependencies {
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
     implementation("com.zaxxer:HikariCP:5.1.0")
-
+    implementation("xyz.xenondevs.invui:invui:1.44")
+    implementation("dev.rollczi:litecommands-bukkit:3.9.7")
     compileOnly 'me.clip:placeholderapi:2.11.6'
+
+    implementation(project(":api"))
 }
