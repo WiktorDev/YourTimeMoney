@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.ycode.plugins.timecoins.commands.AdminCommand;
 import pl.ycode.plugins.timecoins.commands.MainCommand;
 import pl.ycode.plugins.timecoins.commands.arguments.UserArgument;
+import pl.ycode.plugins.timecoins.commands.context.UserContextProvider;
 import pl.ycode.plugins.timecoins.configuration.ConfigurationFactory;
 import pl.ycode.plugins.timecoins.configuration.PluginConfiguration;
 import pl.ycode.plugins.timecoins.configuration.ShopConfiguration;
@@ -17,6 +18,7 @@ import pl.ycode.plugins.timecoins.database.DatabaseConnector;
 import pl.ycode.plugins.timecoins.hooks.PlaceholderApiHook;
 import pl.ycode.plugins.timecoins.listeners.PlayerJoinListener;
 import pl.ycode.plugins.timecoins.listeners.PlayerQuitListener;
+import pl.ycode.plugins.timecoins.menus.Menu;
 import pl.ycode.plugins.timecoins.shop.ShopService;
 import pl.ycode.plugins.timecoins.tasks.UpdateUserTask;
 import pl.ycode.plugins.timecoins.user.User;
@@ -35,6 +37,7 @@ public final class TimeCoinsPlugin extends JavaPlugin {
         this.injector.registerInjectable(this.injector);
 
         this.configurationFactory = new ConfigurationFactory(this.getDataFolder());
+        this.injector.registerInjectable(this.configurationFactory);
         this.registerConfiguration(PluginConfiguration.class, "configuration.yml");
         this.registerConfiguration(ShopConfiguration.class, "shop_items.yml");
 
@@ -44,8 +47,11 @@ public final class TimeCoinsPlugin extends JavaPlugin {
         this.injector.registerInjectable(this.injector.createInstance(UserService.class));
         this.injector.registerInjectable(this.injector.createInstance(ShopService.class));
 
+        this.injector.registerInjectable(this.injector.createInstance(Menu.class));
+
         this.liteCommands = LiteBukkitFactory.builder("yourtimecoins", this)
                 .argument(User.class, this.injector.createInstance(UserArgument.class))
+                .context(User.class, this.injector.createInstance(UserContextProvider.class))
                 .commands(
                         this.injector.createInstance(MainCommand.class),
                         this.injector.createInstance(AdminCommand.class)
