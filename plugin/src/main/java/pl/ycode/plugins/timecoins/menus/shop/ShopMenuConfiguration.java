@@ -1,6 +1,7 @@
 package pl.ycode.plugins.timecoins.menus.shop;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import pl.ycode.plugins.timecoins.menus.MenuConfig;
 import pl.ycode.plugins.timecoins.menus.MenuItem;
 import xyz.xenondevs.invui.item.builder.ItemBuilder;
@@ -34,6 +35,12 @@ public class ShopMenuConfiguration extends MenuConfig {
                     List.of("NEXT_PAGE")
             )
     );
+
+    private ItemStack noFoundsItem = new ItemBuilder(Material.BARRIER).setDisplayName("<red>Nie stać cie na to!").get();
+
+    public ItemStack getNoFoundsItem() {
+        return noFoundsItem;
+    }
 
     @Override
     public String title() {

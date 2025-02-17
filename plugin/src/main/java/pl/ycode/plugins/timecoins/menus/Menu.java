@@ -12,14 +12,14 @@ public class Menu {
     @Inject private Injector injector;
     @Inject private ConfigurationFactory factory;
 
-    private final HashMap<Class<?>, MenuConfig> configs = new HashMap<>();
+    private final HashMap<Class<?>, ? extends MenuConfig> configs = new HashMap<>();
 
     @PostConstruct
     public void __construct() {
         this.setupMenuConfig(ShopMenuConfiguration.class);
     }
 
-    public<T extends AbstractMenu> AbstractMenu resolve(Class<T> clazz) {
+    public<T extends AbstractMenu<? extends MenuConfig>> T resolve(Class<T> clazz) {
         T menu = this.injector.createInstance(clazz);
         menu.setConfig(this.configs.get(menu.configClassName()));
         return menu;

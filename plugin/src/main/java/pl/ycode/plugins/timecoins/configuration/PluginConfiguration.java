@@ -24,4 +24,6 @@ public class PluginConfiguration extends OkaeriConfig {
             "Pierwsze logowanie: {first_login}"
     );
     public String adminShopAddCommand = "&8&l>> &aDodano nowy przedmiot do sklepu";
+
+    public String shopPurchaseSuccessfully = "<dark_gray><bold>>></bold> <green>Pomyślnie zakupiono przedmiot ze sklepu!";
 }
