@@ -12,7 +12,8 @@ Player commands can be modified in configuration.yml
 - **/ytimecoins** - return amount of player coins
 - **/ytimecoins shop** - open shop menu
 
-## Placeholders
+# Placeholders
+This feature requires the PlaceholderAPI plugin to be installed.
 - %ytimecoins_coins% - player coins
 - %ytimecoins_spent_coins% - coins spent by the player
 - %ytimecoins_first_login_datetime% - player first login date (HH:mm:ss dd.MM.yyyy)
